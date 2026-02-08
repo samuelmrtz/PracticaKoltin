@@ -1,30 +1,32 @@
 package edu.example.code
-import java.util.*    // required import
 
-fun randomDay() : String {
-    val week = arrayOf ("Monday", "Tuesday", "Wednesday", "Thursday",
-        "Friday", "Saturday", "Sunday")
-    return week[Random().nextInt(week.size)]
-}
-fun fishFood (day : String) : String {
-    var food = ""
-    when (day) {
-        "Monday" -> food = "flakes"
-        "Tuesday" -> food = "pellets"
-        "Wednesday" -> food = "redworms"
-        "Thursday" -> food = "granules"
-        "Friday" -> food = "mosquitoes"
-        "Saturday" -> food = "lettuce"
-        "Sunday" -> food = "plankton"
+class Aquarium(var length: Int = 100, var width: Int = 20, var height: Int = 40) {
+    init {
+        println("aquarium initializing")
     }
-    return food
-}
-fun feedTheFish() {
-    val day = randomDay()
-    val food = fishFood(day)
-    println ("Today is $day and the fish eat $food")
+    val volume: Int
+        get() = width * height * length / 1000  // 1000 cm^3 = 1 liter
+    fun printSize() {
+        println(
+            "Width: $width cm " +
+                    "Length: $length cm " +
+                    "Height: $height cm "
+        )
+        println("Volume: $volume liters")
+    }
 }
 
-fun main(args: Array<String>) {
-    feedTheFish()
+fun buildAquarium() {
+    val aquarium1 = Aquarium()
+    aquarium1.printSize()
+    val aquarium2 = Aquarium(width = 25)
+    aquarium2.printSize()
+    val aquarium3 = Aquarium(height = 35, length = 110)
+    aquarium3.printSize()
+    val aquarium4 = Aquarium(width = 25, height = 35, length = 110)
+    aquarium4.printSize()
+}
+
+fun main() {
+    buildAquarium()
 }
