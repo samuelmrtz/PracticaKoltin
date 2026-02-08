@@ -1,30 +1,25 @@
 package edu.example.code
-import java.util.*    // required import
 
-fun randomDay() : String {
-    val week = arrayOf ("Monday", "Tuesday", "Wednesday", "Thursday",
-        "Friday", "Saturday", "Sunday")
-    return week[Random().nextInt(week.size)]
-}
-fun fishFood (day : String) : String {
-    var food = ""
-    when (day) {
-        "Monday" -> food = "flakes"
-        "Tuesday" -> food = "pellets"
-        "Wednesday" -> food = "redworms"
-        "Thursday" -> food = "granules"
-        "Friday" -> food = "mosquitoes"
-        "Saturday" -> food = "lettuce"
-        "Sunday" -> food = "plankton"
+class Aquarium {
+    var width: Int = 20
+    var height: Int = 40
+    var length: Int = 100
+    fun printSize() {
+        println(
+            "Width: $width cm " +
+                    "Length: $length cm " +
+                    "Height: $height cm "
+        )
     }
-    return food
-}
-fun feedTheFish() {
-    val day = randomDay()
-    val food = fishFood(day)
-    println ("Today is $day and the fish eat $food")
 }
 
-fun main(args: Array<String>) {
-    feedTheFish()
+fun buildAquarium() {
+    val myAquarium = Aquarium()
+    myAquarium.printSize()
+    myAquarium.height = 60
+    myAquarium.printSize()
+}
+
+fun main() {
+    buildAquarium()
 }
