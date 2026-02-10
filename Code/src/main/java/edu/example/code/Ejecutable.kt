@@ -1,30 +1,36 @@
 package edu.example.code
-import java.util.*    // required import
 
-fun randomDay() : String {
-    val week = arrayOf ("Monday", "Tuesday", "Wednesday", "Thursday",
-        "Friday", "Saturday", "Sunday")
-    return week[Random().nextInt(week.size)]
+abstract class AquariumFish {
+    abstract val color: String
 }
-fun fishFood (day : String) : String {
-    var food = ""
-    when (day) {
-        "Monday" -> food = "flakes"
-        "Tuesday" -> food = "pellets"
-        "Wednesday" -> food = "redworms"
-        "Thursday" -> food = "granules"
-        "Friday" -> food = "mosquitoes"
-        "Saturday" -> food = "lettuce"
-        "Sunday" -> food = "plankton"
+
+class Shark: AquariumFish(), FishAction {
+    override val color = "grey"
+    override fun eat() {
+        println("hunt and eat fish")
     }
-    return food
-}
-fun feedTheFish() {
-    val day = randomDay()
-    val food = fishFood(day)
-    println ("Today is $day and the fish eat $food")
 }
 
-fun main(args: Array<String>) {
-    feedTheFish()
+
+class Plecostomus: AquariumFish(), FishAction {
+    override val color = "gold"
+    override fun eat() {
+        println("eat algae")
+    }
+}
+
+interface FishAction  {
+    fun eat()
+}
+fun makeFish() {
+    val shark = Shark()
+    val pleco = Plecostomus()
+    println("Shark: ${shark.color}")
+    shark.eat()
+    println("Plecostomus: ${pleco.color}")
+    pleco.eat()
+}
+
+fun main () {
+    makeFish()
 }
